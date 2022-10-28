@@ -12,8 +12,18 @@ models.sequelize
     console.log(' > there was an issue synchronizing the database', err)
   })
 
-app.get('/', function (req, res) {
-  res.send('Hello Sequelize!')
+app.get('/', async function (req, res) {
+  const airplanes = await models.Airplane.findAll()
+  res.send('<pre>' + JSON.stringify(airplanes, undefined, 4) + '</pre>')
+})
+
+app.get('/airplanes/:id', async function (req, res) {
+  const airplane = await models.Airplane.findByPk(req.params.id)
+  if (!airplane) {
+    return res.sendStatus(404)
+  }
+
+  res.send('<pre>' + JSON.stringify(airplane, undefined, 4) + '</pre>')
 })
 
 app.listen(3000, function () {
