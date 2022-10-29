@@ -17,9 +17,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      cost: {
-        type: DataTypes.DECIMAL(7, 2),
-      },
       isEmployee: {
         type: DataTypes.VIRTUAL,
         async get() {
