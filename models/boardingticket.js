@@ -62,5 +62,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
 
+  BoardingTicket.afterSave('saveReceipt', async (ticket, options) => {
+    await sequelize.models.Receipts.create(
+      {
+        receipt: ticket.get(),
+      },
+      {
+        transaction: options.transaction,
+      }
+    )
+  })
+
   return BoardingTicket
 }
