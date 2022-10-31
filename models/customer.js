@@ -11,15 +11,17 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         validate: {
-          notEmpty: true,
-          msg: 'A name is required for the customer',
+          notEmpty: {
+            msg: 'A name is required for the customer',
+          },
         },
       },
       email: {
         type: DataTypes.STRING,
         validate: {
-          isEmail: true,
-          msg: 'Invalid email format for the customer',
+          isEmail: {
+            msg: 'Invalid email format for the customer',
+          },
         },
       },
     },
